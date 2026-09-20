@@ -606,6 +606,9 @@
       <div class="card-subtext" style="font-size: 11px; margin-top: 4px; color: var(--text-dim);">
         含月薪$22,055、安定費$1,742、健保保費$629、紅包
       </div>
+      <div style="font-size: 11px; margin-top: 8px; padding: 6px 10px; background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 6px; color: #6EE7B7; line-height: 1.45;">
+        💡 <strong>行情註記</strong>：此為存摺實匯薪資與規費；若加計法定雇主健保公提（約$1,329/月）及包吃包住之伙食水電消耗，雇主實質全包成本約為 <strong>2.6 萬～2.9 萬元／月</strong>。
+      </div>
       <div class="card-progress">
         <div class="progress-bar" style="width: 49%; background: var(--accent-emerald);"></div>
       </div>
@@ -709,9 +712,17 @@
         <div class="sim-slider-group">
           <div class="sim-label-val">
             <span>② 外籍看護人事全包 (薪資+安定費+健保)</span>
-            <span class="val" id="val-sim-lalla">NT$ 24,500 /月</span>
+            <span class="val" id="val-sim-lalla">NT$ 26,000 /月</span>
           </div>
-          <input type="range" id="sim-lalla" min="20000" max="35000" step="500" value="24476" oninput="updateSim()">
+          <input type="range" id="sim-lalla" min="20000" max="35000" step="500" value="26000" oninput="updateSim()">
+          <div style="display: flex; align-items: center; gap: 8px; margin-top: 6px; font-size: 11px;">
+            <span style="color: var(--text-dim);">快速情境：</span>
+            <button type="button" onclick="setLallaSim(24476)" style="background: transparent; border: none; color: var(--accent-cyan); text-decoration: underline; cursor: pointer;">存摺實績 $24,476</button>
+            <span style="color: var(--text-dim);">|</span>
+            <button type="button" onclick="setLallaSim(26000)" style="background: transparent; border: none; color: var(--accent-emerald); text-decoration: underline; cursor: pointer; font-weight: 600;">法定全額 $26,000</button>
+            <span style="color: var(--text-dim);">|</span>
+            <button type="button" onclick="setLallaSim(29000)" style="background: transparent; border: none; color: var(--accent-amber); text-decoration: underline; cursor: pointer;">包吃住行情 $29,000</button>
+          </div>
         </div>
 
         <div class="sim-slider-group">
@@ -831,13 +842,96 @@
 
       <div class="filter-pills">
         <button class="pill-btn active" onclick="setCategoryFilter('ALL', this)">全部 (86)</button>
+        <button class="pill-btn" id="btn-util-other" onclick="setCategoryFilter('水電瓦斯與日常生活雜費', this)" style="background: rgba(56, 189, 248, 0.1); border-color: rgba(56, 189, 248, 0.4); color: #38BDF8; font-weight: 600;">⚡ 水電瓦斯與日常生活雜費 (33)</button>
         <button class="pill-btn" onclick="setCategoryFilter('拉拉薪水', this)">拉拉月薪</button>
         <button class="pill-btn" onclick="setCategoryFilter('拉拉安定費', this)">就業安定費</button>
         <button class="pill-btn" onclick="setCategoryFilter('拉拉健保保費', this)">健保保費</button>
         <button class="pill-btn" onclick="setCategoryFilter('買菜食材', this)">買菜生鮮</button>
         <button class="pill-btn" onclick="setCategoryFilter('看診與衛材', this)">看診與衛材</button>
-        <button class="pill-btn" onclick="setCategoryFilter('水電瓦斯', this)">水電瓦斯</button>
-        <button class="pill-btn" onclick="setCategoryFilter('日常雜費', this)">日常雜費</button>
+        <button class="pill-btn" onclick="setCategoryFilter('水電瓦斯', this)">水電瓦斯 (5)</button>
+        <button class="pill-btn" onclick="setCategoryFilter('日常雜費', this)">日常雜費 (28)</button>
+      </div>
+    </div>
+
+    <!-- Drilldown Panel for 水電瓦斯與日常生活雜費 -->
+    <div id="util-other-drilldown" style="display: none; margin-bottom: 20px; background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(2, 6, 23, 0.9)); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 12px; padding: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.4);">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid rgba(226, 232, 240, 0.1);">
+        <div>
+          <div style="font-size: 16px; font-weight: 700; color: #FFF; display: flex; align-items: center; gap: 8px;">
+            <span style="color: var(--accent-cyan);">⚡ 水電瓦斯與日常生活雜費 深度拆解架構</span>
+            <span style="font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 4px; background: rgba(56, 189, 248, 0.15); color: #38BDF8;">共 33 筆 · 全年 NT$ 70,833 · 月均 NT$ 5,903</span>
+          </div>
+          <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">
+            點擊下方任一子項目按鈕，可直接在下方表格聯動篩選查看明細流水
+          </div>
+        </div>
+        <button type="button" onclick="setCategoryFilter('ALL', document.querySelector('.filter-pills .pill-btn'))" style="background: rgba(255,255,255,0.06); border: 1px solid var(--border-subtle); color: var(--text-muted); padding: 4px 10px; border-radius: 6px; font-size: 11px; cursor: pointer;">關閉拆解 ✕</button>
+      </div>
+
+      <!-- 3 Module Cards -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-bottom: 16px;">
+        <!-- Module 1 -->
+        <div style="background: rgba(2, 6, 23, 0.6); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 10px; padding: 14px;">
+          <div style="font-size: 13px; font-weight: 700; color: var(--accent-cyan); display: flex; justify-content: space-between;">
+            <span>模組一：公用事業與基礎規費</span>
+            <span>29.2%</span>
+          </div>
+          <div style="font-size: 20px; font-weight: 800; color: #FFF; margin: 4px 0; font-family: var(--font-mono);">
+            NT$ 20,653 <span style="font-size: 12px; font-weight: 400; color: var(--text-muted);">（月均 $1,721）</span>
+          </div>
+          <div style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin-top: 6px;">
+            • 台電電費：$8,208（4筆，月均 $684）<br>
+            • 社區管理費：$6,520（1筆，月均 $543）<br>
+            • 第四台電視：$3,300（2筆，月均 $275）<br>
+            • 欣中瓦斯：$1,305（1筆，月均 $109）<br>
+            • 手機通訊費：$1,320（3筆，月均 $110）
+          </div>
+        </div>
+
+        <!-- Module 2 -->
+        <div style="background: rgba(2, 6, 23, 0.6); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: 10px; padding: 14px;">
+          <div style="font-size: 13px; font-weight: 700; color: var(--accent-amber); display: flex; justify-content: space-between;">
+            <span>模組二：生活現金與採買週轉</span>
+            <span>59.3%</span>
+          </div>
+          <div style="font-size: 20px; font-weight: 800; color: #FFF; margin: 4px 0; font-family: var(--font-mono);">
+            NT$ 41,980 <span style="font-size: 12px; font-weight: 400; color: var(--text-muted);">（月均 $3,498）</span>
+          </div>
+          <div style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin-top: 6px;">
+            • 媽媽生活零用金：$23,980（11筆，月均 $1,998）<br>
+            • 現場採買日常雜費：$18,000（8筆，固定每次提領 $2,000 現場備用）<br>
+            <span style="color: #FCD34D;">※ 給長輩身邊放著安心的零花與日用品隨手買</span>
+          </div>
+        </div>
+
+        <!-- Module 3 -->
+        <div style="background: rgba(2, 6, 23, 0.6); border: 1px solid rgba(168, 85, 247, 0.2); border-radius: 10px; padding: 14px;">
+          <div style="font-size: 13px; font-weight: 700; color: var(--accent-purple); display: flex; justify-content: space-between;">
+            <span>模組三：居家修繕與初期沖轉</span>
+            <span>11.6%</span>
+          </div>
+          <div style="font-size: 20px; font-weight: 800; color: #FFF; margin: 4px 0; font-family: var(--font-mono);">
+            NT$ 8,200 <span style="font-size: 12px; font-weight: 400; color: var(--text-muted);">（月均 $683）</span>
+          </div>
+          <div style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin-top: 6px;">
+            • 居家修繕與耗材：$2,200（洗衣精 $700、修門 $1,500）<br>
+            • 初期代墊款沖轉：$6,000（2025/10/10「還我先匯拉拉」開帳沖轉 1 筆）
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Sub-filters -->
+      <div style="display: flex; flex-wrap: wrap; gap: 6px; align-items: center;">
+        <span style="font-size: 11px; color: var(--text-dim); margin-right: 4px;">快速細查：</span>
+        <button type="button" class="pill-btn active" onclick="filterSubDrilldown('ALL', this)">全部 33 筆</button>
+        <button type="button" class="pill-btn" onclick="filterSubDrilldown('台電', this)">台電電費 (4)</button>
+        <button type="button" class="pill-btn" onclick="filterSubDrilldown('瓦斯', this)">欣中天然氣 (1)</button>
+        <button type="button" class="pill-btn" onclick="filterSubDrilldown('管理', this)">大樓管理費 (1)</button>
+        <button type="button" class="pill-btn" onclick="filterSubDrilldown('電視', this)">第四台有線電視 (2)</button>
+        <button type="button" class="pill-btn" onclick="filterSubDrilldown('電話', this)">手機通訊費 (3)</button>
+        <button type="button" class="pill-btn" onclick="filterSubDrilldown('零用', this)">媽媽零用金 (11)</button>
+        <button type="button" class="pill-btn" onclick="filterSubDrilldown('雜費', this)">現場採買週轉 (8)</button>
+        <button type="button" class="pill-btn" onclick="filterSubDrilldown('修繕', this)">修繕與沖轉 (3)</button>
       </div>
     </div>
 
@@ -982,14 +1076,37 @@
 
     const filtered = appData.details.filter(r => {
       const matchMonth = (m === 'ALL') || r.date.startsWith(m);
-      const matchCat = (activeCategory === 'ALL') || 
-                       (activeCategory === '拉拉薪水' && r.category === '拉拉薪水') ||
-                       (activeCategory === '拉拉安定費' && r.category === '拉拉安定費') ||
-                       (activeCategory === '拉拉健保保費' && r.category === '拉拉健保保費') ||
-                       (activeCategory === '買菜食材' && r.category === '買菜食材') ||
-                       (activeCategory === '看診與衛材' && r.category === '看診與衛材') ||
-                       (activeCategory === '水電瓦斯' && r.category === '水電瓦斯') ||
-                       (activeCategory === '日常雜費' && !r.category.includes('拉拉') && !['買菜食材','看診與衛材','水電瓦斯'].includes(r.category));
+      let matchCat = false;
+      if (activeCategory === 'ALL') {
+        matchCat = true;
+      } else if (activeCategory === '水電瓦斯與日常生活雜費') {
+        matchCat = !r.category.includes('拉拉') && !['買菜食材','看診與衛材'].includes(r.category);
+        if (window._subDrilldown && window._subDrilldown !== 'ALL') {
+          const sub = window._subDrilldown;
+          if (sub === '台電') matchCat = r.note.includes('電') && !r.note.includes('話') && !r.note.includes('視');
+          else if (sub === '瓦斯') matchCat = r.note.includes('欣中') || r.note.includes('GAS');
+          else if (sub === '管理') matchCat = r.note.includes('管理');
+          else if (sub === '電視') matchCat = r.note.includes('有線電視');
+          else if (sub === '電話') matchCat = r.note.includes('電話') || r.note.includes('手機');
+          else if (sub === '零用') matchCat = ['零用','零錢','家用','給媽錢','媽媽費','媽媽','CookP'].some(k => r.note.includes(k)) && !r.note.includes('雜費');
+          else if (sub === '雜費') matchCat = r.note.includes('雜費');
+          else if (sub === '修繕') matchCat = r.note.includes('修門') || r.note.includes('洗衣精') || r.note.includes('還我先匯');
+        }
+      } else if (activeCategory === '拉拉薪水') {
+        matchCat = (r.category === '拉拉薪水');
+      } else if (activeCategory === '拉拉安定費') {
+        matchCat = (r.category === '拉拉安定費');
+      } else if (activeCategory === '拉拉健保保費') {
+        matchCat = (r.category === '拉拉健保保費');
+      } else if (activeCategory === '買菜食材') {
+        matchCat = (r.category === '買菜食材');
+      } else if (activeCategory === '看診與衛材') {
+        matchCat = (r.category === '看診與衛材');
+      } else if (activeCategory === '水電瓦斯') {
+        matchCat = (r.category === '水電瓦斯');
+      } else if (activeCategory === '日常雜費') {
+        matchCat = !r.category.includes('拉拉') && !['買菜食材','看診與衛材','水電瓦斯'].includes(r.category);
+      }
       
       const matchQuery = !q || 
                          r.note.toLowerCase().includes(q) || 
@@ -1003,10 +1120,30 @@
     renderDetailsTable(filtered);
   }
 
+  window._subDrilldown = 'ALL';
   function setCategoryFilter(cat, btn) {
     activeCategory = cat;
+    window._subDrilldown = 'ALL';
     document.querySelectorAll('.filter-pills .pill-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
+    if (btn) btn.classList.add('active');
+    
+    // Toggle Drilldown Panel
+    const drilldown = document.getElementById('util-other-drilldown');
+    if (drilldown) {
+      drilldown.style.display = (cat === '水電瓦斯與日常生活雜費') ? 'block' : 'none';
+      if (cat === '水電瓦斯與日常生活雜費') {
+        document.querySelectorAll('#util-other-drilldown .pill-btn').forEach(b => b.classList.remove('active'));
+        const first = document.querySelector('#util-other-drilldown .pill-btn');
+        if (first) first.classList.add('active');
+      }
+    }
+    filterDetails();
+  }
+
+  function filterSubDrilldown(sub, btn) {
+    window._subDrilldown = sub;
+    document.querySelectorAll('#util-other-drilldown .pill-btn').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
     filterDetails();
   }
 
@@ -1238,9 +1375,14 @@
     document.getElementById('sim-total-year').innerText = formatMoney(totY);
   }
 
+  function setLallaSim(val) {
+    document.getElementById('sim-lalla').value = val;
+    updateSim();
+  }
+
   function resetSimulator() {
     document.getElementById('sim-house').value = 10000;
-    document.getElementById('sim-lalla').value = 24476;
+    document.getElementById('sim-lalla').value = 26000;
     document.getElementById('sim-food').value = 7803;
     document.getElementById('sim-med').value = 1766;
     document.getElementById('sim-other').value = 5903;
